@@ -57,6 +57,9 @@ if __name__ == '__main__':
     heatmap_plot = sns.heatmap(hm,cmap='plasma')
     heatmap_fig = heatmap_plot.get_figure()
     heatmap_fig.savefig('outputs/heatmap_plot.png')
+    
+    # bt.run()
+    bt.plot(filename="outputs/test.html", open_browser=True)
     plt.show()
     
     with mlflow.start_run(run_name="backtesting") as run:
