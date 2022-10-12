@@ -18,8 +18,8 @@ The main objective of this project is to design and build a reliable, large-scal
 ## Data
 
 There are a number of data points that yahoo finance and binance provides and you can use, but for the purpose of testing the backend development, you can start of with the candlestick data.
-You can read a brief description of what a K-line or candlestick data is here.
-
+You can read a brief description of what a K-line or candlestick data is [here](https://www.investopedia.com/terms/c/candlestick.asp).
+The data used for the EDA of this project is Algorand USD financial dataset, from [Algorand USD (ALGO-USD) Price History & Historical Data - Yahoo Finance dates; from October 11, 2021 to October 11, 2022](https://finance.yahoo.com/quote/ALGO-USD/history?p=ALGO-USD). The data shows the historical prices on a daily basis.
 ## System Flow
 
 ![image](https://user-images.githubusercontent.com/59474650/195408248-8f696112-b8cd-4d61-9efb-5abfc75f3dfb.png)
