@@ -6,7 +6,7 @@ A robust data-pipeline that can run various backtests and store various useful a
 * [Data](#data)
 * [System Flow](#system-flow)
 * [Installation Guide](#installation-guide)
-* [Project Structure)(#project-structure)
+* [Project Structure](#project-structure)
 * [LICENCE](#licence)
 * [Contributers](#contributors)
 
