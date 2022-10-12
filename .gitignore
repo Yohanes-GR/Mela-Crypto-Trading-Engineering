@@ -4,6 +4,7 @@
 notebooks/algoyf.csv
 .history
 data/algoyf.csv
+data/ALGO-USD.csv
 env
 outputs
 mlruns
