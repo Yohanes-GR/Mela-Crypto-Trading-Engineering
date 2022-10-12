@@ -55,3 +55,4 @@ wcwidth==0.2.5
 websocket-client==1.4.1
 Werkzeug==2.2.2
 zipp==3.9.0
+backtrader==1.9.76.123
