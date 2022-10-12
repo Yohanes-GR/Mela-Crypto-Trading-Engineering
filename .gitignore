@@ -8,3 +8,4 @@ data/ALGO-USD.csv
 env
 outputs
 mlruns
+.DS_Store
