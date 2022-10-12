@@ -14,8 +14,7 @@ class GoldenCross(bt.Strategy):
         )
 
         self.crossover = bt.indicators.CrossOver(self.fast_moving_average, self.slow_moving_average)
-
-
+        
     def next(self):
         if self.position.size == 0:
             if self.crossover > 0:
