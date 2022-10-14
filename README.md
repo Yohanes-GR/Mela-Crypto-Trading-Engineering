@@ -25,7 +25,11 @@ The data used for the EDA of this project is Algorand USD financial dataset, fro
 ![image](https://user-images.githubusercontent.com/59474650/195408248-8f696112-b8cd-4d61-9efb-5abfc75f3dfb.png)
 
 ## Installation Guide
-
+```
+git clone https://github.com/TenAcademy/backtesting.git
+cd backtesting
+pip install -r requirements.txt
+```
 ## Project Structure
 
 ### LICENCE
