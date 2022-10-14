@@ -6,7 +6,7 @@ CREATE TABLE "backtest_metrics" (
   "losing_trades" float,
   "max_drawndown" float,
   "shape_ration" float,
-  "scene_id" int
+  "scene_id" int,
 );
 
 CREATE TABLE "scene" (
@@ -18,13 +18,15 @@ CREATE TABLE "scene" (
 
 CREATE TABLE "indicator" (
   "id" SERIAL PRIMARY KEY,
-  "param_from" float,
-  "param_to" float
+  "name" varchar,
+  "indicator_param" int
 );
 
 CREATE TABLE "indicator_param" (
   "id" SERIAL PRIMARY KEY,
-  "param_name" varchar
+  "param_name" varchar,
+  "from" float,
+  "to" float
 );
 
 CREATE TABLE "users" (
@@ -32,11 +34,14 @@ CREATE TABLE "users" (
   "full_name" varchar,
   "email" varchar,
   "password" varchar,
-  "created_at" timestamp
+  "created_at" timestamp,
+  "backtest_run" int
 );
 
 ALTER TABLE "backtest_metrics" ADD FOREIGN KEY ("scene_id") REFERENCES "scene" ("id");
 
-ALTER TABLE "indicator" ADD FOREIGN KEY ("id") REFERENCES "scene" ("id");
+ALTER TABLE "backtest_metrics" ADD FOREIGN KEY ("id") REFERENCES "users" ("backtest_run");
 
-ALTER TABLE "indicator_param" ADD FOREIGN KEY ("id") REFERENCES "indicator" ("id");
+ALTER TABLE "indicator" ADD FOREIGN KEY ("id") REFERENCES "scene" ("indicator_id");
+
+ALTER TABLE "indicator_param" ADD FOREIGN KEY ("id") REFERENCES "indicator" ("indicator_param");
