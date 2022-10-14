@@ -27,7 +27,7 @@ The data used for the EDA of this project is Algorand USD financial dataset, fro
 ## Installation Guide
 ```
 git clone https://github.com/Hu-10xB6W7G5/Mela-Crypto-Trading-Engineering.git
-cd backtesting
+cd Mela-Crypto-Trading-Engineering
 pip install -r requirements.txt
 ```
 ## Project Structure
