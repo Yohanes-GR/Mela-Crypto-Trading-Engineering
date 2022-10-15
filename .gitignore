@@ -10,3 +10,4 @@ env
 outputs
 mlruns
 .DS_Store
+frontend/node_modules
