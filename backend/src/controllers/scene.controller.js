@@ -9,7 +9,7 @@ async function handleScene(request, response) {
 pool.query('SELECT * FROM scene WHERE (from_date = $1 and to_date = $2 and indicator_id = $3)',[from_date,to_date,indicator_id],(error,result)=>{
    if (result.rowCount == 0){
      //if not publish rscene
-       produce(id,request.body).catch((err) => {
+        produce(id, from_date,to_date,indicator_id).catch((err) => {
             console.error("error in producer: ", err)
           })
    }else{
@@ -17,7 +17,7 @@ pool.query('SELECT * FROM scene WHERE (from_date = $1 and to_date = $2 and indic
     pool.query('SELECT * FROM backtest_metrics  WHERE scene_id = $1', [scene_id], (error, get_results) => {
         if (get_results.rowCount == 0) {
            //publisch the scene
-           produce(id,request.body).catch((err) => {
+           produce(id, from_date,to_date,indicator_id).catch((err) => {
             console.error("error in producer: ", err)
           })
         }
