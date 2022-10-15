@@ -22,8 +22,8 @@ const produce = async (id, from_date,to_date,indicator_id) => {
 				topic,
 				messages: [
 					{
-						key:String(id),
-						value:String(indicator_id) + ","+ String(from_date) +","+ String(to_date) + "," + String(indicator_id)
+						key:String(scene_id),
+						value:String(scene_id) + ","+ String(from_date) +","+ String(to_date) + "," + String(indicator_id)
 					},
 				],
 			})

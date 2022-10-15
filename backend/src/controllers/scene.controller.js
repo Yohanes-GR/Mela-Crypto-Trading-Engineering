@@ -22,8 +22,7 @@ pool.query('SELECT * FROM scene WHERE (from_date = $1 and to_date = $2 and indic
           })
         }
         else{
-          console.log(get_results)
-          response.status(201).send(`User added with ID: ${get_results.rows[0].id}`)
+          response.status(200).json(get_results.rows)          
         }
         });
    } 
