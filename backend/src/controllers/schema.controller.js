@@ -1,5 +1,5 @@
 // importing packages
-const pool = require('../configs/db.config')
+const { pool } = require('../configs/db.config')
 var fs = require('fs');
 
 async  function createTables (request, response) {

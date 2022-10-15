@@ -1,5 +1,5 @@
 // importing packages
-const pool = require('../configs/db.config')
+const { pool } = require('../configs/db.config')
 
 async  function getIndicator (request, response) {
 	const id = parseInt(request.params.id)

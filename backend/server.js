@@ -8,8 +8,12 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 
 //local import
-const sequelize = require('./src/configs/db.config');
+const {sequelize} = require('./src/configs/db.config');
 const User = require('./src/models/user.model');
+const schemRouter = require('./src/routes/schema.route');
+const indicatorRouter = require('./src/routes/indicator.route');
+const sceneIndicator = require('./src/routes/scene.route')
+
 const SECRET = process.env.SECRET_CODE;
 
 
