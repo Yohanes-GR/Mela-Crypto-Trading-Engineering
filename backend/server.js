@@ -13,6 +13,7 @@ const User = require('./src/models/user.model');
 const SECRET = process.env.SECRET_CODE;
 
 
+
 (async function testDbConnection() {
     try {
         await sequelize.authenticate();
@@ -49,6 +50,7 @@ require('./src/configs/passportConfig')(passport);
 app.get('/', (req, res)=> {
     res.send("hello world")
 });
+
 
 app.post("/signin", (req, res, next) => {
     console.log(req.body)
@@ -104,6 +106,11 @@ app.get("/user", (req, res) => {
   res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
 });
 
+//app.use('/auth', authRouter);
+app.use('/schema',schemRouter);
+app.use('/indicator',indicatorRouter)
+app.use('/scene', sceneIndicator)
+
 /* Error handler middleware */
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -113,7 +120,7 @@ app.use((err, req, res, next) => {
   return;
 });
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5500
 //Start the server
 app.listen(PORT, () => {
     console.log("server is running");
