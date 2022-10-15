@@ -34,9 +34,11 @@ CREATE TABLE "users" (
   "full_name" varchar,
   "email" varchar,
   "password" varchar,
-  "created_at" timestamp,
+  "createdAt" timestamp,
+  "updatedAt" timestamp,
   "backtest_run" int UNIQUE AUTOINCREMENT
   );
+
 
 ALTER TABLE "backtest_metrics" ADD FOREIGN KEY ("scene_id") REFERENCES "scene" ("id");
 
