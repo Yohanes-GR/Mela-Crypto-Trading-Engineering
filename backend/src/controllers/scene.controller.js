@@ -1,5 +1,5 @@
 // importing packages
-const pool = require('../configs/db.config')
+const { pool } = require('../configs/db.config')
 const produce = require("../kafka/kafka.producer")
 
 async function handleScene(request, response) {
