@@ -26,8 +26,7 @@ pool.query('SELECT * FROM scene WHERE (from_date = $1 and to_date = $2 and indic
         }
         });
    } 
-  })
- 
+  }) 
 }
 
 module.exports = {handleScene}
