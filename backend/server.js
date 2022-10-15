@@ -1,24 +1,17 @@
 require('dotenv').config();
-const { Sequelize } = require('sequelize');
 const express = require('express');
 const cors = require('cors');
 const passport = require('passport');
-const passportLocal = require('passport-local');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
 //local import
-const authRouter = require('./src/routes/auth.route');
+const sequelize = require('./src/configs/db.config');
+const User = require('./src/models/user.model');
+const SECRET = process.env.SECRET_CODE;
 
-
-const pgUserName = process.env.POSTGRES_USER_NAME
-const pgPassword = process.env.POSTGRES_PASSWORD
-const pgDbName = process.env.POSTGRES_DATABASE_NAME
-const pgPort = process.env.POSTGRES_PORT
-const secret = process.env.SECRET_CODE
-const sequelize = new Sequelize(`postgres://${pgUserName}:${pgPassword}@melachallengedatabase.crlafpfc5g5y.us-east-1.rds.amazonaws.com:${pgPort}/${pgDbName}`);
 
 (async function testDbConnection() {
     try {
@@ -28,6 +21,7 @@ const sequelize = new Sequelize(`postgres://${pgUserName}:${pgPassword}@melachal
         console.error('Uable to connect to the database', error);
     }
 })();
+
 
 // sequelize.close()
 const app = express();
@@ -41,18 +35,74 @@ app.use(cors({
 }));
 
 app.use(session({
-    secret: secret,
+    secret: SECRET,
     resave: true, 
     saveUninitialized: true
 }));
 
-app.use(cookieParser(secret));
+app.use(cookieParser(SECRET));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./src/configs/passportConfig')(passport);
+
 
 app.get('/', (req, res)=> {
     res.send("hello world")
 });
 
-app.use('/auth', authRouter);
+app.post("/signin", (req, res, next) => {
+    console.log(req.body)
+  passport.authenticate("local", (err, user, info) => {
+    if (err) throw err;
+    if (!user) res.send("No User Exists");
+    else {
+      req.logIn(user, (err) => {
+        if (err) throw err;
+        res.send("Successfully Authenticated");
+        console.log(req.user);
+      });
+    }
+  })(req, res, next);
+});
+
+app.post("/signup", async(req, res) => {
+    try {
+        console.log(req.body)
+        const [user, created] = await User.findOrCreate({
+            where: { email: req.body.email },
+            defaults: {
+                email: req.body.email,
+                full_name: req.body.firstName + ' ' + req.body.lastName,
+                password: await bcrypt.hash(req.body.password, 10),
+            }
+        });
+        if (created) {
+            req.login(user, (err) => {
+                if (err) return next(err);
+                res.json({
+                    id: user.id,
+                    full_name: user.full_name,
+                    email: user.email
+                });
+            });
+            // res.send("User Created");
+        }
+        if (!created) return res.json({error: "User already exists"});
+
+    } catch (error) {
+        console.error("Failed signing up", error);
+    }
+});
+
+app.post('/logout', logout);
+async function logout(req, res, next) {
+    req.logout();
+    res.end();
+}
+
+app.get("/user", (req, res) => {
+  res.send(req.user); // The req.user stores the entire user that has been authenticated inside of it.
+});
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {

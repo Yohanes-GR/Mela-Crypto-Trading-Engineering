@@ -34,7 +34,8 @@ CREATE TABLE "users" (
   "full_name" varchar,
   "email" varchar,
   "password" varchar,
-  "created_at" timestamp,
+  "createdAt" timestamp,
+  "updatedAt" timestamp,
   "backtest_run" int
 );
 
