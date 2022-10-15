@@ -11,13 +11,16 @@ const bodyParser = require('body-parser');
 
 //local import
 const authRouter = require('./src/routes/auth.route');
-
+const schemRouter =  require('./src/routes/schema.route');
+const indicatorRouter = require('./src/routes/indicator.route')
+const sceneIndicator = require('./src/routes/scene.route')
 
 const pgUserName = process.env.POSTGRES_USER_NAME
 const pgPassword = process.env.POSTGRES_PASSWORD
 const pgDbName = process.env.POSTGRES_DATABASE_NAME
 const pgPort = process.env.POSTGRES_PORT
 const secret = process.env.SECRET_CODE
+console.log(process.env)
 const sequelize = new Sequelize(`postgres://${pgUserName}:${pgPassword}@melachallengedatabase.crlafpfc5g5y.us-east-1.rds.amazonaws.com:${pgPort}/${pgDbName}`);
 
 (async function testDbConnection() {
@@ -53,6 +56,9 @@ app.get('/', (req, res)=> {
 });
 
 app.use('/auth', authRouter);
+app.use('/schema',schemRouter);
+app.use('/indicator',indicatorRouter)
+app.use('/scene', sceneIndicator)
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
@@ -63,7 +69,7 @@ app.use((err, req, res, next) => {
   return;
 });
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5500
 //Start the server
 app.listen(PORT, () => {
     console.log("server is running");
