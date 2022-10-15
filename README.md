@@ -37,6 +37,13 @@ cd Mela-Crypto-Trading-Engineering/frontend
 npm install
 npm start
 ```
+### Backend
+```
+cd Mela-Crypto-Trading-Engineering/backend
+npm install
+touch .env #and write the environmental viriables there
+npm start
+```
 ## Project Structure
 
 ### LICENCE
