@@ -1,11 +1,11 @@
-import Layout from './components/layouts/Layout';
+import AppLayout from './components/layouts/AppLayout';
 import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   return (
-    <Layout>
+    <AppLayout>
       <Dashboard/>
-    </Layout>
+    </AppLayout>
   );
 }
 
