@@ -13,7 +13,7 @@ A robust data-pipeline that can run various backtests and store various useful a
 ## Project Overview
 The main objective of this project is to design and build a reliable, large-scale ,robust data-pipeline that can run various backtests and store various useful artifacts in a robust data warehouse system for Mela who wants to enter the world of cryptocurrencies to make simple trade for everyone.
 
-![image](https://user-images.githubusercontent.com/59474650/195403132-3a79d749-1fc8-4e19-9ff2-469a27b7b75c.png)
+![image](https://user-images.githubusercontent.com/59474650/196071974-6df86c64-2a93-4253-9243-d5ac847b1e88.png)
 
 ## Data
 
